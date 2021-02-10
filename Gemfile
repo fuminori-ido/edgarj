@@ -18,6 +18,7 @@ gem 'kaminari'
 gem 'config'
 gem 'awesome_nested_set'
 gem 'activerecord-session_store'
+gem 'sprockets'
 
 group :development, :test do
   gem 'byebug'

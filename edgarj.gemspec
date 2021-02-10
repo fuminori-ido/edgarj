@@ -23,13 +23,14 @@ EOM
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails",               '~> 4.0'
-  s.add_dependency 'jquery-rails',        '~> 3.1', '>= 3.1.0'
+  s.add_dependency 'jquery-rails',        '~> 4.4', '>= 4.4.0'
   s.add_dependency 'jquery-ui-rails',     '~> 5.0', '>= 5.0.0'
   s.add_dependency 'config',              '~> 1.0.0'
   s.add_dependency "kaminari",            '~> 0.15'
   s.add_dependency "remotipart",          '~> 1.2'
   s.add_dependency 'awesome_nested_set',  '~> 3'
   s.add_dependency 'activerecord-session_store',  '~> 0.1'
+  s.add_dependency 'sprockets',                   '~> 3.7.2'
 
   s.add_development_dependency "mysql2",          '~> 0.3.20'
 end
