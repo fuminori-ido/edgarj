@@ -24,7 +24,7 @@ EOM
 
   s.add_dependency "rails",               '~> 4.0'
   s.add_dependency 'jquery-rails',        '~> 4.4', '>= 4.4.0'
-  s.add_dependency 'jquery-ui-rails',     '~> 5.0', '>= 5.0.0'
+  s.add_dependency 'jquery-ui-rails',     '>= 5', '< 7'
   s.add_dependency 'config',              '~> 1.0.0'
   s.add_dependency "kaminari",            '>= 0.15', '< 2.0'
   s.add_dependency "remotipart",          '~> 1.2'
