@@ -22,6 +22,8 @@ EOM
   s.files = Dir["{app,config,db,lib,locale}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
+  s.required_ruby_version = '>= 2.5.0'
+
   s.add_dependency "rails",               '~> 4.0'
   s.add_dependency 'jquery-rails',        '~> 4.4', '>= 4.4.0'
   s.add_dependency 'jquery-ui-rails',     '>= 5', '< 7'
