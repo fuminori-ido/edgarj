@@ -8,7 +8,7 @@ module Edgarj
       if !sssn || !(page_info = sssn.page_infos.find_by_view(view))
         page_info = sssn.page_infos.build(
             view:     view,
-            lines:    10,
+            lines:    20,
             order_by: '',
             dir:      '',
             page:     1)
