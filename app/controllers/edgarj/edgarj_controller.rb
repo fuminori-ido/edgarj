@@ -330,7 +330,7 @@ module Edgarj
       filename    = sprintf("%s-%s.csv",
                         model_name,
                         Time.now.strftime("%Y%m%d-%H%M%S"))
-      file        = Tempfile.new(filename, Settings.edgarj.csv_dir)
+      file        = Tempfile.new(filename, Rails.root + 'tmp/edgarj/csv_download')
       csv_visitor = EdgarjHelper::CsvVisitor.new(view_context)
       file.write CSV.generate_line(model.columns.map{|c| c.name})
       for rec in user_scoped.where(page_info.record.conditions).
@@ -344,8 +344,7 @@ module Edgarj
         end
         file.write CSV.generate_line(array)
       end
-      file.close 
-      File.chmod(Settings.edgarj.csv_permission, file.path)
+      file.close
       send_file(file.path, {
           type:     'text/csv',
           filename: filename})

@@ -157,10 +157,7 @@ module Edgarj
 
       # draw 'belongs_to' field for AR
       def _draw_belongs_to_field(parent_model, col)
-        label = Settings.edgarj.belongs_to.popup_on == 'field' ?
-            nil :
-            @vc.draw_belongs_to_label(@f, @drawer.popup_path(col), col.name)
-        _draw_head(col, label){
+        _draw_head(col, nil){
           @vc.draw_belongs_to_field(@f, @drawer.popup_path(col), col.name)
         }
       end

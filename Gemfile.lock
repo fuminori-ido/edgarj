@@ -4,7 +4,6 @@ PATH
     edgarj (4.06.08)
       activerecord-session_store (~> 0.1)
       awesome_nested_set (~> 3)
-      config (~> 1.0)
       jquery-rails (~> 4.4, >= 4.4.0)
       jquery-ui-rails (>= 5, < 7)
       kaminari (>= 0.15, < 2.0)

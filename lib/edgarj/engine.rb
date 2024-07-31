@@ -8,15 +8,6 @@ module Edgarj
       g.templates.unshift File::expand_path('../templates', __FILE__)
     end
 
-    # load this engine's config
-    # (rails_config default loads from only Rails.root/config/...)
-    def self.load_config
-      engine_config_dir = Pathname.new(File.expand_path('../../../config', __FILE__))
-      Settings.prepend_source!((engine_config_dir + 'settings.yml').to_s)
-      Settings.prepend_source!((engine_config_dir + "settings/#{Rails.env}.yml").to_s)
-      Settings.reload!
-    end
-
     # Require/load application side edgarj config in RAILS_ROOT/config/edgarj/
     def self.load_edgarj_conf_in_app
       [
@@ -45,14 +36,17 @@ module Edgarj
 
     # make edgarj related work directories
     def self.make_work_dir
-      for dir in [Settings.edgarj.work_dir, Settings.edgarj.csv_dir] do
+      work_dirs = [
+        Rails.root + 'tmp/edgarj',
+        Rails.root + 'tmp/edgarj/csv_download'
+      ]
+      for dir in work_dirs do
         FileUtils.mkdir_p(dir) if !File.directory?(dir)
       end
     end
 
     initializer "edgarj" do
       ActiveRecord::SessionStore::Session.table_name = 'edgarj_sssns'
-      Engine::load_config
       Engine::load_edgarj_conf_in_app
       Engine::load_decorators
       for file in Dir.glob(File.join(File.dirname(__FILE__), "../../locale/*.yml")) do

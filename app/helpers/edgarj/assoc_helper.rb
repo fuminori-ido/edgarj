@@ -164,7 +164,7 @@ module Edgarj
 
       link_to(
           draw_belongs_to_label_sub(model, col.name, parent_model).html_safe +
-          Settings.edgarj.belongs_to.link_tag.html_safe,
+          '<span class="edgarj_field_belongs_to_button">▼</span>'.html_safe,
           popup_path,
           remote: true)
     end
@@ -177,16 +177,12 @@ module Edgarj
     # popup_field:: Edgarj::PopupHelper::PopupField object
     # parent_name:: initial parent name
     def draw_belongs_to_clear_link(f, col_name, popup_field, parent_name, default_label)
-      if Settings.edgarj.belongs_to.disable_clear_link
-        f.hidden_field(col_name)
-      else
-        ('&nbsp;&nbsp;' +
-            link_to("[#{I18n.t('edgarj.default.clear')}]", '#',
-                onClick:  "Edgarj.Popup.clear('#{j(popup_field.id_target)}','#{j(default_label)}'); return false;",
-                id:       popup_field.clear_link,
-                style:    'display:' + (parent_name.blank? ? 'none' : '')) +
-            f.hidden_field(col_name)).html_safe
-      end
+      ('&nbsp;&nbsp;' +
+          link_to("[#{I18n.t('edgarj.default.clear')}]", '#',
+              onClick:  "Edgarj.Popup.clear('#{j(popup_field.id_target)}','#{j(default_label)}'); return false;",
+              id:       popup_field.clear_link,
+              style:    'display:' + (parent_name.blank? ? 'none' : '')) +
+          f.hidden_field(col_name)).html_safe
     end
 
     # draw 'belongs_to' popup data-entry field
@@ -211,30 +207,17 @@ module Edgarj
       label = content_tag(:span,
           parent_obj ? parent_obj.name : default_label.html_safe,
           id: popup_field.label_target)
-      link_tag = Settings.edgarj.belongs_to.link_tag.html_safe
+      link_tag = '<span class="edgarj_field_belongs_to_button">▼</span>'.html_safe
       if parent_obj
-        if Settings.edgarj.belongs_to.popup_on == 'field'
-          link_to(
-              label + link_tag,
-              popup_path,
-              remote: true)
-        else
-          link_to(label,
-              # TODO: Hardcoded 'master' prefix should be fixed
-              controller: url_prefix + parent_obj.class.name.underscore.pluralize,
-              action:     'show',
-              id:         parent_obj,
-              topic_path: 'add')
-        end
+        link_to(
+            label + link_tag,
+            popup_path,
+            remote: true)
       else
-        if Settings.edgarj.belongs_to.popup_on == 'field'
-          link_to(
-              label + link_tag,
-              popup_path,
-              remote: true)
-        else
-          label
-        end
+        link_to(
+            label + link_tag,
+            popup_path,
+            remote: true)
       end +
       draw_belongs_to_clear_link(f, col.name, popup_field,
           parent_obj && parent_obj.name,
