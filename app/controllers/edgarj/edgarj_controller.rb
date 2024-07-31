@@ -327,10 +327,13 @@ module Edgarj
     # FIXME: file.close(true) deletes files *BEFORE* actually send file
     # so that comment it out.  Need to clean these work files.
     def csv_download
+      dir = '/tmp/edgarj/csv_download'
+      FileUtils.mkdir_p(dir)
+
       filename    = sprintf("%s-%s.csv",
                         model_name,
                         Time.now.strftime("%Y%m%d-%H%M%S"))
-      file        = Tempfile.new(filename, '/tmp/edgarj/csv_download')
+      file        = Tempfile.new(filename, dir)
       csv_visitor = EdgarjHelper::CsvVisitor.new(view_context)
       file.write CSV.generate_line(model.columns.map{|c| c.name})
       for rec in user_scoped.where(page_info.record.conditions).
