@@ -164,7 +164,7 @@ module Edgarj
 
       link_to(
           draw_belongs_to_label_sub(model, col.name, parent_model).html_safe +
-          '<span class="edgarj_field_belongs_to_button">▼</span>'.html_safe,
+          '<span class="edgarj_field_belongs_to_button">選択</span>'.html_safe,
           popup_path,
           remote: true)
     end
@@ -207,7 +207,7 @@ module Edgarj
       label = content_tag(:span,
           parent_obj ? parent_obj.name : default_label.html_safe,
           id: popup_field.label_target)
-      link_tag = '<span class="edgarj_field_belongs_to_button">▼</span>'.html_safe
+      link_tag = '<span class="edgarj_field_belongs_to_button">選択</span>'.html_safe
       if parent_obj
         link_to(
             label + link_tag,
