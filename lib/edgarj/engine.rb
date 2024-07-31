@@ -37,8 +37,7 @@ module Edgarj
     # make edgarj related work directories
     def self.make_work_dir
       work_dirs = [
-        Rails.root + 'tmp/edgarj',
-        Rails.root + 'tmp/edgarj/csv_download'
+        Rails.root + 'tmp/edgarj'
       ]
       for dir in work_dirs do
         FileUtils.mkdir_p(dir) if !File.directory?(dir)
