@@ -177,12 +177,7 @@ module Edgarj
     # popup_field:: Edgarj::PopupHelper::PopupField object
     # parent_name:: initial parent name
     def draw_belongs_to_clear_link(f, col_name, popup_field, parent_name, default_label)
-      ('&nbsp;&nbsp;' +
-          link_to("[#{I18n.t('edgarj.default.clear')}]", '#',
-              onClick:  "Edgarj.Popup.clear('#{j(popup_field.id_target)}','#{j(default_label)}'); return false;",
-              id:       popup_field.clear_link,
-              style:    'display:' + (parent_name.blank? ? 'none' : '')) +
-          f.hidden_field(col_name)).html_safe
+      f.hidden_field(col_name)
     end
 
     # draw 'belongs_to' popup data-entry field
