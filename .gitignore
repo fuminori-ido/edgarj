@@ -11,3 +11,4 @@ test/dummy/db/migrate/*_rename_edgar*
 test/dummy/.byebug_history
 
 *~
+/.project
